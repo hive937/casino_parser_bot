@@ -26,7 +26,7 @@ def start(update, context):
 refresh_count = 0
 
 
-def fuck(update, context, driver):
+def main_page_login(update, context, driver):
     global refresh_count
     try:
         time.sleep(3)
@@ -42,7 +42,7 @@ def fuck(update, context, driver):
             if refresh_count == 0 or refresh_count == 1:
                 driver.refresh()
                 refresh_count += 1
-                fuck(update, context, driver)
+                main_page_login(update, context, driver)
 
             elif refresh_count == 2:
                 driver.close()
@@ -58,10 +58,10 @@ def fuck(update, context, driver):
         try:
             element_popup = driver.find_element(By.XPATH, '//*[@id="welcomeButton"]')
             element_popup.click()
-            fuck_2(update, context, driver, response_bigger_less_text)
+            parse_roulette(update, context, driver, response_bigger_less_text)
 
         except NoSuchElementException:
-            fuck_2(update, context, driver, response_bigger_less_text)
+            parse_roulette(update, context, driver, response_bigger_less_text)
 
     except AttributeError:
         parse_casino(update, context)
@@ -80,7 +80,7 @@ def fuck(update, context, driver):
         element_popup = driver.find_element(By.XPATH, '//*[@id="welcomeButton"]')
         driver.execute_script("arguments[0].scrollIntoView();", element_popup)
         element_popup.click()
-        fuck(update, context, driver)
+        main_page_login(update, context, driver)
 
     except InvalidSessionIdException:
         driver.close()
@@ -88,7 +88,7 @@ def fuck(update, context, driver):
         parse_casino(update, context)
 
     except StaleElementReferenceException:
-        fuck(update, context, driver)
+        main_page_login(update, context, driver)
 
     except IndexError:
         driver.close()
@@ -101,7 +101,7 @@ def fuck(update, context, driver):
         parse_casino(update, context)
 
 
-def fuck_2(update, context, driver, response_bigger_less_text):
+def parse_roulette(update, context, driver, response_bigger_less_text):
     arr = []
     arr_sum = []
     how_many_to_delete = 6
@@ -160,7 +160,7 @@ def fuck_2(update, context, driver, response_bigger_less_text):
             context.bot.send_message(chat_id=CHAT_ID, text=f'Внимание! 9, 10, 11 и 12 не выпадали уже 4 броска!')
 
     except ElementNotInteractableException:
-        fuck_2(update, context, driver, response_bigger_less_text)
+        parse_roulette(update, context, driver, response_bigger_less_text)
 
     except TimedOut:
         driver.close()
@@ -221,9 +221,9 @@ def parse_casino(update, context):
         try:
             element_popup = driver.find_element(By.XPATH, '//*[@id="welcomeButton"]')
             element_popup.click()
-            fuck(update, context, driver)
+            main_page_login(update, context, driver)
         except NoSuchElementException:
-            fuck(update, context, driver)
+            main_page_login(update, context, driver)
 
         except TimedOut:
             driver.close()
@@ -261,7 +261,7 @@ def parse_casino(update, context):
         parse_casino(update, context)
 
     except StaleElementReferenceException:
-        fuck(update, context, driver)
+        main_page_login(update, context, driver)
 
     except AttributeError:
         driver.quit()
