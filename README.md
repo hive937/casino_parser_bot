@@ -1,6 +1,6 @@
 # CasinoParserBot
 [![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python)](https://www.python.org/)
-[!Selenium](https://img.shields.io/badge/Selenium-43B02A?style=flat-square&logo=Selenium&logoColor=white)]
+[![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=flat-square&logo=Selenium&logoColor=white)]
 
 
 Бот-парсер для популярного сайта-казино, сделанный на заказ.
