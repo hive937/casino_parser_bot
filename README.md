@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```
 * Запустите бота
 ```
-python main.py
+python main2.py
 ```
 
 ## Для успешной работы проекта
